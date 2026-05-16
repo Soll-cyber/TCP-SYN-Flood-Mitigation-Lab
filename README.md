@@ -21,7 +21,7 @@ sudo hping3 -S -i u1000 -V 127.0.0.1
 
 ### Wireshark Analysis:
 Using the display filter `tcp.flags.syn == 1 and tcp.flags.ack == 0`, a massive influx of half-open TCP connections was observed targeting port 80. No concluding `ACK` packets were received from the source, filling the server's syncache.
-![Wireshark Attack](wireshark_attack.png)
+
 ---
 
 ## 🛡️ Phase 2: Mitigation & Hardening
@@ -40,7 +40,7 @@ To protect the server from resource exhaustion without blocking legitimate users
 ### Verification:
 While the `hping3` attack was actively running at 1000 pkts/sec, the web server was tested via a browser (`http://127.0.0.1`). 
 * **Result:** The web page loaded instantly. The system remained responsive, and network performance remained stable under attack conditions.
-![Mitigation Success](mitigation_success.png)
+
 ---
 
 ## 📊 Key Takeaways
